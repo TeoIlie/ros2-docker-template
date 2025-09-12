@@ -14,7 +14,11 @@
 
 ### Daily commands
 1. `cd` to the project with the ROS2 version you need, for example `ros2-docker-template/humble`
-2. Copy your `src` directory for ROS2 workspace into the `[ROS_DISTRO]/src` folder - it is linked with Docker volumes to `src` inside the container
+2. Pull source code using git submodules
+   ```bash
+   git submodule update --init --force --remote
+   ```
+   The `src` directory is managed via git submodules and is linked with Docker volumes to `src` inside the container
 3. `cd` into the `ros2-docker-template/[ROS_DISTRO]/scripts` subfolder to use `dev.sh` shortcuts
     1. start a container and enter it
         
@@ -77,12 +81,16 @@
 
 ### Quick Start
 1. Clone the `dev-containers` branch of this repo
-2. Open the subfolder with the ROS version you wish to use in VSCode, for example `ros2-docker-template/foxy`
-3. Install Docker Engine with `apt` (not the VM Docker Desktop)**:** https://docs.docker.com/engine/install/ubuntu/#prerequisites
-4. Install VSCode Dev Containers extension - https://code.visualstudio.com/docs/devcontainers/containers
+2. Pull source code using git submodules
+   ```bash
+   git submodule update --init --force --remote
+   ```
+3. Open the subfolder with the ROS version you wish to use in VSCode, for example `ros2-docker-template/foxy`
+4. Install Docker Engine with `apt` (not the VM Docker Desktop)**:** https://docs.docker.com/engine/install/ubuntu/#prerequisites
+5. Install VSCode Dev Containers extension - https://code.visualstudio.com/docs/devcontainers/containers
     - More on Dev Containers at this tutorial by **Articulated Robotics**: https://www.youtube.com/watch?v=dihfA7Ol6Mw
-5. Open VS Code Command Palette (**CTRL + P**), type `>Dev Containers: Reopen in Container`, and select it
-6. VS Code will open a new window that contains an integrated IDE inside the Docker container, according to the instructions inside `.devcontainer`
+6. Open VS Code Command Palette (**CTRL + P**), type `>Dev Containers: Reopen in Container`, and select it
+7. VS Code will open a new window that contains an integrated IDE inside the Docker container, according to the instructions inside `.devcontainer`
 
 ### `f1tenth_gym_ros` implementation branch 
 - this branch - `impl/dev-containers-f1tenth-gym-ros` is an implementatino of the `dev-containers` branch, using the `docker` branch of the `f1tenth_gym_ros` project fork: https://github.com/TeoIlie/F1TENTH_Gym_ROS/tree/docker 
