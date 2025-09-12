@@ -38,11 +38,6 @@ USER $USERNAME
 # Set the default working directory
 WORKDIR /home/$USERNAME/ros2_ws
 
-# Build the code - source ROS, install dependencies, build with colcon
-RUN . /opt/ros/humble/setup.sh && \
-    rosdep update && rosdep install --from-paths src --ignore-src -r -y && \
-    colcon build --symlink-install
-
 # Add ROS and workscape sourcing in bashrc
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc && \
     echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc && \

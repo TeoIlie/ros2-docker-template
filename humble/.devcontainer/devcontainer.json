@@ -4,6 +4,7 @@
   "service": "ros2-dc-srv-humble",
   "workspaceFolder": "/home/user1000/ros2_ws",
   "shutdownAction": "stopCompose",
+  "postCreateCommand": "bash -c 'source /opt/ros/foxy/setup.bash && rosdep update && rosdep install --from-paths src --ignore-src -r -y && colcon build --symlink-install && source install/setup.bash'",
   "customizations": {
     "vscode": {
       "extensions": [

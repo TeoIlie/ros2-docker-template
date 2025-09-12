@@ -1,0 +1,11 @@
+# Foxy submodule
+[submodule "foxy/src"]
+	path = foxy/src
+	url = https://github.com/TeoIlie/articubot_one.git
+	branch = main
+
+# Example submodule configuration for humble/src (uncomment and modify as needed):
+# [submodule "humble/src"]
+# 	path = humble/src
+# 	url = https://github.com/YOUR_USERNAME/YOUR_REPO.git
+# 	branch = humble
