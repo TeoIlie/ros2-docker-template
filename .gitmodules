@@ -1,4 +1,4 @@
-[submodule "foxy/src/f1tenth_gym_ros"]
-	path = foxy/src/f1tenth_gym_ros
-	url = https://github.com/TeoIlie/F1TENTH_Gym_ROS.git
-	branch = docker
+[submodule "noetic/src/f1tenth_simulator"]
+	path = noetic/src/f1tenth_simulator
+	url = https://github.com/ForzaETH/f1tenth_simulator.git
+	branch = master

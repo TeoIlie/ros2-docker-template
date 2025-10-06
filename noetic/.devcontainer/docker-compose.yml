@@ -1,21 +1,21 @@
 services:
-  ros2-dc-srv-foxy:
+  ros2-dc-srv-noetic:
     build: 
       context: .
       dockerfile: Dockerfile
       args:
-        ROS_DISTRO: foxy
+        ROS_DISTRO: noetic
         USERNAME: user1000
         USER_UID: 1000
         USER_GID: 1000 
-    container_name: ros2-dc-cont-foxy
+    container_name: ros2-dc-cont-noetic
     volumes:
-      - ../src:/home/user1000/ros2_ws/src:rw
+      - ../src:/home/user1000/catkin_ws/src:rw
       - ../../shared:/home/user1000/shared:rw
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     environment:
       - DISPLAY=${DISPLAY}
-      - ROS_DISTRO=foxy
+      - ROS_DISTRO=noetic
       - USERNAME=user1000
     network_mode: host
     stdin_open: true

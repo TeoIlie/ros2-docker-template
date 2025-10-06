@@ -1,25 +1,26 @@
 {
-  "name": "ROS Foxy Development",
+  "name": "ROS Noetic Development",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "ros2-dc-srv-foxy",
-  "workspaceFolder": "/home/user1000/ros2_ws",
+  "service": "ros2-dc-srv-noetic",
+  "workspaceFolder": "/home/user1000/catkin_ws",
   "shutdownAction": "stopCompose",
-  // The src volume is mounted at runtime, therefor rosdep, colcon build, and source commands
+  // The src volume is mounted at runtime, therefor rosdep, build, and source commands
   // must be performed as a postCreateCommand, after the container has started
-  "postCreateCommand": "bash -c 'source /opt/ros/foxy/setup.bash && rosdep update && rosdep install --from-paths src --ignore-src -r -y && colcon build --symlink-install && source install/setup.bash'",
+  "postCreateCommand": "bash -c 'source /opt/ros/noetic/setup.bash && rosdep update && rosdep install --from-paths src --ignore-src -r -y && catkin_make && source devel/setup.bash'",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode.cpptools",
         "ms-python.python",
-        "ms-iotdev.vscode-ros"
+        "ms-iotdev.vscode-ros",
+        "twxs.cmake"
       ],
       "settings": {
         "workbench.colorTheme": "Default Dark+",
         "workbench.colorCustomizations": {
-          "titleBar.activeBackground": "#ff6b35",
+          "titleBar.activeBackground": "#353fff",
           "titleBar.activeForeground": "#ffffff",
-          "statusBar.background": "#ff6b35"
+          "statusBar.background": "#353fff"
         },
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.profiles.linux": {

@@ -1,30 +1,17 @@
-FROM osrf/ros:foxy-desktop
+FROM osrf/ros:noetic-desktop-full
 # Set ROS_DOMAIN_ID for separation of concerns
 ENV ROS_DOMAIN_ID=10
 
 # Install additional tools as `root` user here
 RUN apt-get update && apt-get install -y \
-    # ROS packages
-    ros-foxy-xacro \
-    ros-foxy-joint-state-publisher-gui \
-    ros-foxy-twist-mux \
-    ros-foxy-ros2-control \
-    ros-foxy-ros2-controllers \
-    ros-foxy-controller-manager \
-    ros-foxy-controller-manager-msgs \
-    ros-foxy-tf2-tools \
-    ros-foxy-gazebo-ros2-control \
-    ros-foxy-gazebo-ros2-control-demos \
-    ros-foxy-image-transport-plugins \
-    ros-foxy-rqt-image-view \
-    ros-foxy-slam-toolbox \
-    ros-foxy-navigation2 \
-    ros-foxy-nav2-bringup \
-    ros-foxy-turtlebot3* \
-    ros-foxy-twist-mux \
-    ros-foxy-rviz2 \
-    # Gazebo
-    ros-foxy-gazebo-ros-pkgs \
+    # ROS1 pkgs
+    ros-noetic-ackermann-msgs \
+    ros-noetic-map-server \
+    ros-noetic-joy \
+    ros-noetic-rviz \
+    ros-noetic-tf2-geometry-msgs \
+    ros-noetic-xacro \
+    ros-noetic-robot-state-publisher \
     # Install other dependencies as well
     python3-colcon-common-extensions \
     python3-rosdep \    
@@ -39,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     bash-completion 
 
 RUN apt-get -y dist-upgrade
-RUN pip3 install transforms3d
+# RUN pip3 install transforms3d
 
 # Install Starship for prettiness
 RUN curl -fsSL https://starship.rs/install.sh | sh -s -- -y
@@ -55,24 +42,18 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # Set up workspace
-RUN mkdir -p /home/$USERNAME/ros2_ws/src && \
+RUN mkdir -p /home/$USERNAME/catkin_ws/src && \
     chown -R $USERNAME:$USERNAME /home/$USERNAME/
 
 # Set the default user to non-root for working with ROS
 USER $USERNAME
 
 # Set the default working directory, this is where f1tenth_gym_ros src code will be
-WORKDIR /home/$USERNAME/ros2_ws
-
-# Install f1tenth gym dependencies inside /home/$USERNAME
-RUN cd /home/$USERNAME && \
-    git clone https://github.com/f1tenth/f1tenth_gym && \
-    cd f1tenth_gym && \
-    pip3 install -e .
+WORKDIR /home/$USERNAME/catkin_ws
 
 # Add ROS and workscape sourcing in bashrc
-RUN echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc && \
-    echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc && \
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
+    echo "source ~/catkin_wis/devel/setup.bash" >> ~/.bashrc && \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc && \
     echo 'echo "[~/.bashrc] ROS Domain ID: ${ROS_DOMAIN_ID}"' >> ~/.bashrc
 
